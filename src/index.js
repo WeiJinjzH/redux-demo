@@ -5,7 +5,6 @@ import { Provider } from 'react-redux';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import rootReducer from './reducers/index'
-import { increament, decreament } from './actions'
 
 const store = createStore(rootReducer)
 // store.subscribe(() => console.log("State updated", store.getState()))

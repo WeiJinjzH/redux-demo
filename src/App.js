@@ -2,9 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 // 在App种获取store的第三种方法
 import { connect } from 'react-redux';
+import { increament, decreament } from './actions/index';
 
 class App extends React.Component {
   render() {
+    const { dispatch } = this.props
     return (
       <div className="container">
         <h1 className="jumbotron-heading text-center">
@@ -12,8 +14,8 @@ class App extends React.Component {
           {this.props.counter}
         </h1>
         <p className="text-center">
-          <button className="btn btn-primary mr-2">Increase</button>
-          <button className="btn btn-danger my-2">Decrease</button>
+          <button onClick={() => dispatch(increament('hello redux'))} className="btn btn-primary mr-2">Increase</button>
+          <button onClick={() => dispatch(decreament())} className="btn btn-danger my-2">Decrease</button>
         </p>
       </div>
     )

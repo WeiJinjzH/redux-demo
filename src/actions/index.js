@@ -1,7 +1,8 @@
 import { INCREAMENT, DECREAMENT } from './../constans'
-export const increament = () => {
+export const increament = (name) => {
     return {
         type: INCREAMENT,
+        name,
     }
 }
 export const decreament = () => {
