@@ -27,8 +27,12 @@ class App extends React.Component {
 const mapStateToProps = (state) => { // 把state转成props的形式
   // 这里的state相当于store.getState()
   return {
-    counter: state
-  }
+    counter: state.counter
+  };
+};
+
+App.propTypes = { // 加验证，必须传入number类型的counter
+  counter: PropTypes.number.isRequired,
 }
 
 export default connect(mapStateToProps)(App);
