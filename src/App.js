@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 // 把action传到component中去的第三种方法
 import { bindActionCreators } from 'redux';
-import { increament, decreament } from './actions/index';
+import * as types from './actions/index';
 
 class App extends React.Component {
   render() {
@@ -52,16 +52,19 @@ const mapStateToProps = (state) => { // 把state转成props的形式
 
 /* 把action传到component中去的第二种方法 在connect中传入第二个参数 此时this.props里面就没有dispatch了，而是有这个函数返回的方法 */
 const mapDispatchToProps = (dispatch) => {
-  return {
-    // increament: (name) => { dispatch(increament(name)) }, // 把action传到component中去的第二种方法
-    // decreament: () => { dispatch(decreament()) } // 把action传到component中去的第二种方法
+  // return {
+  //   // increament: (name) => { dispatch(increament(name)) }, // 把action传到component中去的第二种方法
+  //   // decreament: () => { dispatch(decreament()) } // 把action传到component中去的第二种方法
   
 
 
-    /* 把action传到component中去的第三种方法 */
-    increament: bindActionCreators(increament, dispatch), // increament是导入进来的
-    decreament: bindActionCreators(decreament, dispatch)
-  }
+  //   /* 把action传到component中去的第三种方法 */
+  //   increament: bindActionCreators(increament, dispatch), // increament是导入进来的
+  //   decreament: bindActionCreators(decreament, dispatch)
+  // }
+
+
+  return bindActionCreators(types, dispatch)
 }
 
 App.propTypes = { // 加验证，必须传入number类型的counter
@@ -69,5 +72,10 @@ App.propTypes = { // 加验证，必须传入number类型的counter
   increament: PropTypes.func.isRequired,
   decreament: PropTypes.func.isRequired,
 }
+
+
+/* 当action里面有3个及以上的方法时，{ increament, decreament }这样的格式就会显得很麻烦，此时就要用到bindActionCreators方法，把action中的方法一下子全部导过来 */
+// export default connect(mapStateToProps, { increament, decreament })(App);
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
