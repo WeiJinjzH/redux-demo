@@ -6,7 +6,12 @@ import { increament, decreament } from './actions/index';
 
 class App extends React.Component {
   render() {
-    const { dispatch } = this.props
+    /* 第一种方法 */
+    // const { dispatch } = this.props
+    console.log(this.props)
+
+    /* 第二种方法 */
+    const { increament, decreament } = this.props
     return (
       <div className="container">
         <h1 className="jumbotron-heading text-center">
@@ -14,8 +19,14 @@ class App extends React.Component {
           {this.props.counter}
         </h1>
         <p className="text-center">
-          <button onClick={() => dispatch(increament('hello redux'))} className="btn btn-primary mr-2">Increase</button>
-          <button onClick={() => dispatch(decreament())} className="btn btn-danger my-2">Decrease</button>
+          {/* 第一种方法 */}
+          {/* <button onClick={() => dispatch(increament('hello redux'))} className="btn btn-primary mr-2">Increase</button> */}
+          {/* <button onClick={() => dispatch(decreament())} className="btn btn-danger my-2">Decrease</button> */}
+
+
+          {/* 第二种方法 */}
+          <button onClick={() => increament('hello redux')} className="btn btn-primary mr-2">Increase</button>
+          <button onClick={() => decreament()} className="btn btn-danger my-2">Decrease</button>
         </p>
       </div>
     )
@@ -26,6 +37,8 @@ class App extends React.Component {
 //   store: PropTypes.object,
 // }
 
+
+/* 把action传到component中去的第一种方法，connect可以传两个参数，第一个是state，第二个是action(可不传) 不传的时候直接在上面用dispatch就好了  */
 const mapStateToProps = (state) => { // 把state转成props的形式
   // 这里的state相当于store.getState()
   return {
@@ -33,8 +46,17 @@ const mapStateToProps = (state) => { // 把state转成props的形式
   };
 };
 
+
+/* 第二种方法 在connect中传入第二个参数 此时this.props里面就没有dispatch了，而是有这个函数返回的方法 */
+const mapDispatchToProps = (dispatch) => {
+  return {
+    increament: (name) => { dispatch(increament(name)) },
+    decreament: () => { dispatch(decreament()) }
+  }
+}
+
 App.propTypes = { // 加验证，必须传入number类型的counter
   counter: PropTypes.number.isRequired,
 }
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
