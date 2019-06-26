@@ -1,8 +1,4 @@
-## 安装
-
-```
-npm install
-```
+## 安装`npm install`
 
 ## 使用
 
