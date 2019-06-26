@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 // 把action传到component中去的第三种方法
 import { bindActionCreators } from 'redux';
 import * as types from './actions/index';
+import User from './components/User'
 
 const mapStateToProps = (state) => { 
   return {
@@ -47,6 +48,7 @@ class App extends React.Component {
           <button onClick={() => increament('hello redux')} className="btn btn-primary mr-2">Increase</button>
           <button onClick={() => decreament()} className="btn btn-danger my-2">Decrease</button>
         </p>
+        <User />
       </div>
     )
   }
