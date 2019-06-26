@@ -1,2 +1,3 @@
 export const INCREAMENT = 'INCREAMENT';
 export const DECREAMENT = 'DECREAMENT';
+export const FETCH_USER_SUCCESS = 'FETCH_USER_SUCCESS';
