@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
 import logger from 'redux-logger';
 import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import rootReducer from './reducers/index'
@@ -30,7 +31,7 @@ const error = store => next => action => {
         console.log(`error ${e}`)
     }
 }
-const store = createStore(rootReducer, {}, applyMiddleware(logger, error))
+const store = createStore(rootReducer, {}, applyMiddleware(logger, thunk))
 // store.subscribe(() => console.log("State updated", store.getState()))
 
 // ReactDOM.render(<Provider store={store}><App store={store} /></Provider>, document.getElementById('root')); // 这里不提倡直接在App组件上传入store 当组件很多的时候就不是很方便
