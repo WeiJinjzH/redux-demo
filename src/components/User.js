@@ -6,6 +6,7 @@ class User extends React.Component {
     render() {
         const { get_user } = this.props
         const { isFetching, error, user } = this.props.user
+        console.log(user)
         let data
         if (error) {
             data = error
